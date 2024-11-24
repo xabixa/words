@@ -4,9 +4,10 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,14 +22,15 @@ import model.CellType
 @Composable
 fun BoardView(
     board: Board,
+    modifier: Modifier = Modifier
 ) {
     Column(
-        Modifier.border(
+        modifier.then(Modifier.fillMaxSize().border(
             border = BorderStroke(1.dp, BoardStyle.Colors.border)
-        ).padding(1.dp)
+        ).padding(1.dp))
     ) {
         board.cells.forEach { row ->
-            Row {
+            Row(Modifier.weight(1f)) {
                 row.forEach {
                     BoardCellView(it)
                 }
@@ -38,11 +40,11 @@ fun BoardView(
 }
 
 @Composable
-fun BoardCellView(boardCell: BoardCell) {
+fun RowScope.BoardCellView(boardCell: BoardCell) {
     Box(
         modifier = Modifier
-            .width(40.dp)
-            .height(40.dp)
+            .weight(1f)
+            .fillMaxHeight()
             .background(boardCell.toStyle())
             .border(border = BorderStroke(1.dp, BoardStyle.Colors.border)),
         contentAlignment = Alignment.Center

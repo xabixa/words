@@ -1,7 +1,10 @@
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -18,13 +21,37 @@ import model.BoardFactory
 fun App() {
     MaterialTheme {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                BoardView(BoardFactory.emptyBoard)
-                Spacer(Modifier.height(32.dp))
-                Row {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Spacer(Modifier.weight(0.1f))
+                Row(
+                    modifier = Modifier.weight(1f),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center,
+                ) {
+                    Spacer(Modifier.weight(0.1f))
+                    BoxWithConstraints(Modifier.weight(1f), contentAlignment = Alignment.Center) {
+                        BoardView(BoardFactory.emptyBoard, Modifier.aspectRatio(1f))
+                    }
+                    Spacer(Modifier.weight(0.1f))
+                }
+                Spacer(Modifier.weight(0.1f))
+                Row(
+                    modifier = Modifier.weight(0.5f),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center,
+                ) {
                     Spacer(Modifier.weight(1f))
-                    PlayerView()
-                    Row(Modifier.weight(1f), verticalAlignment = Alignment.CenterVertically) {
+                    BoxWithConstraints(Modifier.weight(1f), contentAlignment = Alignment.Center) {
+                        PlayerView(Modifier.aspectRatio(7f))
+                    }
+                    Row(
+                        modifier = Modifier.weight(1f),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center,
+                    ) {
                         Spacer(Modifier.width(32.dp))
                         Button({
 
@@ -33,7 +60,7 @@ fun App() {
                         }
                     }
                 }
-
+                Spacer(Modifier.weight(0.1f))
             }
         }
     }
