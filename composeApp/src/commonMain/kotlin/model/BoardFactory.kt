@@ -8,8 +8,7 @@ object BoardFactory {
                 (1..15).map { y ->
                     (1..15).map { x ->
                         BoardCell(
-                            x = x,
-                            y = y,
+                            position = Position(row = x, column = y),
                             type = when (x to y) {
                                 8 to 8 -> CellType.Start
                                 in listOf(

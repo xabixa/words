@@ -2,11 +2,15 @@ package model
 
 data class Board(
     val cells : List<List<BoardCell>>
-)
+) {
+
+    fun getCellAt(position: Position): BoardCell {
+        return cells.flatten().first { it.position == position }
+    }
+}
 
 data class BoardCell(
-    val x: Int,
-    val y: Int,
+    val position: Position,
     val type: CellType,
 )
 

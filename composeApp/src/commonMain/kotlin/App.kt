@@ -32,7 +32,7 @@ fun App() {
                     horizontalArrangement = Arrangement.Center,
                 ) {
                     Spacer(Modifier.weight(0.1f))
-                    BoxWithConstraints(Modifier.weight(1f), contentAlignment = Alignment.Center) {
+                    Box(Modifier.weight(1f), contentAlignment = Alignment.Center) {
                         BoardView(BoardFactory.emptyBoard, Modifier.aspectRatio(1f))
                     }
                     Spacer(Modifier.weight(0.1f))
@@ -44,7 +44,7 @@ fun App() {
                     horizontalArrangement = Arrangement.Center,
                 ) {
                     Spacer(Modifier.weight(1f))
-                    BoxWithConstraints(Modifier.weight(1f), contentAlignment = Alignment.Center) {
+                    Box(Modifier.weight(1f), contentAlignment = Alignment.Center) {
                         PlayerView(Modifier.aspectRatio(7f))
                     }
                     Row(
